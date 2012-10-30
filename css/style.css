@@ -581,17 +581,28 @@ image box properties
 	
 .blockbox1 img , .blockbox2 img , .blockbox3 img , .blockbox4 img  {
 		width: 240px;
+			position: relative;
 		}
 				
 	.diamond {
-	background-image:url("../img/startup-lab.png");
-	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/startup-lab.png',sizingMethod='crop')
+	width: 20px;
+	height: 20px;
+	position: absolute;
+    top: 53px;
+	right: 63px;
+	}
+	
+	.diamond img {
+	width: 55px;
+	height: 55px;
+
 	}
 	
 	#work h4 {
 	font-family: Helvetica, sans-serif;
 	font-size: 18px;
 	font-weight: 100;
+	margin-top: 20px;
 	}
 	
 	#work h4 a {
