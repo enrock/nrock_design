@@ -1,0 +1,163 @@
+/* APPLE STYLE */
+
+
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+#services ul{
+margin-top: 10px; 
+list-style: none;
+}
+ 
+	.skills {
+		width:50%;
+	text-align: center;
+	padding: 0px 0px 0px 0px;
+	float: left;
+	margin-bottom: 30px;
+	}
+	
+.software {
+width:50%;
+text-align: center;
+padding: 0px 0px 0px 0px;
+float: right;
+	}
+	
+#services {
+margin: auto;
+padding: 50px 14.4736842% 56px 14.4736842%;
+	}
+	
+hgroup {
+padding: 95px 8.4736842% 95px 8.4736842%;  
+}
+
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+.sidetext,
+	.sideimage img
+	 {
+		width:100% !important;
+	}
+	
+	.container > header {
+		padding:2em 1em;
+	}
+	
+	.container header li a {
+		padding:.25em;
+	}
+	
+	body {
+		padding:0em 0em;
+	}
+	
+	.container > header, 	
+	.container > footer {
+		padding:2em 3em;
+	}
+	
+	.scotch_a,
+	.scotch_b {
+		display: none;
+	}
+	
+	.col-3 article {
+		width:100%;
+		padding-bottom:1em;
+	}
+	
+	section {
+		padding-left:1.25em;
+		padding-right:1.25em;
+	}
+	
+/*
+FOOTER PROPERTIES
+*/
+
+	/*adjusts width of footer button box*/
+	footer > .social {
+	margin: auto;
+	width: 268px;
+	padding:0px;
+	float: none;
+}
+	
+	#footer > div {
+		width:100%;
+		padding:.75em;
+	}
+
+
+footer > .social:first-child,
+footer > .social:last-child {
+	width:100%;	
+}
+
+footer .social ul {
+	width: 78%;
+	margin: auto;
+	padding-right:6%;
+}
+
+footer .social ul li {
+	margin: auto;
+display: inline;
+}
+
+footer > .footblock:first-child,
+footer > .footblock:last-child {
+	width:10%;
+		float: none;
+}
+
+footer > .footblock {
+	width:50%;
+	padding:0 1em;
+}
+
+footer > .footblock:first-child {
+	padding:0 1em 0 0;
+}
+
+footer .footblock ul {
+	list-style: none;
+	float: none;
+	padding-right:2em;
+	padding-top:1.8em;
+	padding-right:.5em;
+}
+
+footer .footblock ul li {
+	padding-bottom: .3em;
+}
+
+footer .footblock ul li {
+	font-weight: 400;
+	color: #666;
+	list-style: none;
+	font-size: 0.87em;
+	font-family: Helvetica, sans-serif;
+	/*color: #afafaf;*/
+	text-shadow: 1px 1px 0px #fff;
+}
+
+footer .social ul li img {
+width: 80%;
+}
+
+footer .social ul li {
+	float: right;
+	list-style: none;
+	padding-left: 1em;
+}
+}

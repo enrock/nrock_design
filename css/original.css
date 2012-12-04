@@ -719,16 +719,106 @@ padding: 95px 8.4736842% 95px 8.4736842%;
 
 }
 
-/*PROBLEM CSS - edit or remove.*/
+/*PROBLEM CSS - change max to min*/
 @media only screen and (max-width: 767px) {
 	
+#container {
+width: 100%;
+	}
+	
+	#container {
+background-color: red;
+	}
+	
+	.logo {
+		width: 215px;
+		height: 54px;
+		float: none;
+		margin: 0px auto 10px;
+	}
 
+nav {
+	width: 100%;
+	height: 80px;
+	margin: 0;
+	padding: 26px 0px 66px 0px;
+}
+
+nav ul{
+display: block;
+width: 330px;
+float: none;	
+padding-left: 9%;
+margin: 0px auto 0px;
+border:;
+	}
+	
+nav li {
+margin-left: 0px;
+}
+
+nav li a {
+}
+				
+section {
+width: 100%;
+padding:0px;
+margin: 0px;
+	}
+		
+#services {
+margin: auto;
+padding: 50px 13.4736842% 56px 13.4736842%;
+	}
+	
+/*
+image box properties
+*/
+	
+#work {
+margin: auto;
+width: 80%;
+padding: 50px 5.4736842% 56px 9.4736842%;
+}
+	
+#work .thumbbox {
+width:36.33%;
+border: 1px solid #ccc;
+display: inline;
+float: right;
+margin: 1.5em 11% 6% 0em;
+}
+
+/*
+FORM PROPERTIES
+*/
+		
+.formbox {
+margin: auto;
+padding: 50px 6.4736842% 56px 6.4736842%;
+	}
+
+form {
+width: 80%;
+/*width: 60%;*/
+padding: 5% 0% 5% 0%;
+margin: 0px auto 50px;
+border: 1px solid #D8D8D8;
+	}
+	
+hgroup {
+padding: 95px 7.4736842% 95px 7.4736842%; 
+}
 		
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px) { /*borrowed fron 767*/
 #container {
 width: 100%;
+	}
+	
+	#container {
+background-color: green;
 	}
 	
 	.logo {
@@ -812,7 +902,7 @@ padding: 95px 7.4736842% 95px 7.4736842%;
 }	
 }
 
-@media only screen and (max-width: 480px) { /*iphone syle that work. adjust nav bar*/
+@media only screen and (max-width: 480px) {
 #container {
 width: 100%;
 margin: auto;
@@ -959,7 +1049,151 @@ border: 1px solid green;
 }
 
 @media only screen and (min-width: 320px) {
+	
+#container {
+width: 100%;
+margin: auto;
+border-right: 0px;
+border-left: 0px;
+background-color: #fff;
+padding: 0px;
+	}
+	
+.formbox {
+margin: auto;
+padding: 50px 1% 56px 1%;
+	}
 
+form {
+width: 86%;
+padding: 5% 0% 5% 0%;
+margin: 0px auto 50px;
+border: 1px solid #D8D8D8;
+	}		
+
+/*
+NAVIGATION
+*/
+
+nav { /*revised styles*/
+	width: 100%;
+	height: 80px;
+	margin: 0;
+	padding: 26px 0px 66px 0px;
+}
+
+nav ul{
+display: block;
+width: 100%
+float: none;	
+padding-left: 9%;
+margin: 0px auto 0px;
+	}
+
+/*nav ul{ old styles	
+padding-right: 16px;
+	}*/
+
+
+  	
+/*
+page properties
+*/
+
+section {
+width: 100%;
+/*border-bottom: 1px solid #D8D8D8;*/
+	}
+		
+.summary {
+margin: auto;
+width: 80%;
+padding: 50px 9.4736842% 16px 9.4736842%;
+	}
+	
+#services_section {
+width: 100%;
+border: 0px;
+	}
+
+#services {
+width: 80%;
+padding: 50px 9.4736842% 56px 9.4736842%;
+	}
+		  
+.skills {
+width: 100%;
+text-align: center;
+float: none;
+}
+	
+.software {
+width: 100%;
+text-align: center;
+float: none;
+	}
+	
+hgroup {
+padding: 95px 5.4736842% 95px 5.4736842%;
+}
+
+/*
+image box properties
+*/
+
+#work_section {
+width: 100%;
+border: 0px;
+margin-bottom: 80px;
+}
+
+#work {
+margin: auto;
+width: 84%;
+padding: 50px 5.4736842% 56px 5.4736842%;
+}
+	
+#work .thumbbox {
+width:90.33%;
+border: 1px solid #ccc;
+display: block;
+float: none;
+margin: 1.5em auto 15%;
+}
+	
+.thumbbox {
+}
+
+/*
+SOCIAL MEDIA BUTTONS
+*/
+
+.social-block{
+margin:5px auto 0 auto;
+text-align:center;
+width:100%;
+border: 1px solid red;
+}
+	
+.social-block .teammate{
+display:inline-block;
+position:relative;
+width:70px;
+height:93px;
+/*margin:0 2% 18px 2%;*/
+padding-right: 3%;
+border: 1px solid blue;
+	}
+	
+.social-block .name{
+font-family: 1.125em Helvetica, sans-serif;
+font-weight: 100;
+color: #666;
+padding: 0px;
+margin-top: 0px;
+border: 1px solid green;
+	}
+}
 
 }
 
@@ -972,6 +1206,121 @@ border: 1px solid green;
 @media 
 	only screen and (-webkit-min-device-pixel-ratio: 2),
 	only screen and (min-device-pixel-ratio: 2) {
+	#container {
+width: 100%;
+margin: auto;
+border-right: 0px;
+border-left: 0px;
+background-color: #fff;
+padding: 0px;
+	}
+	
+.formbox {
+margin: auto;
+padding: 50px 1% 56px 1%;
+	}
 
+form {
+width: 86%;
+padding: 5% 0% 5% 0%;
+margin: 0px auto 50px;
+border: 1px solid #D8D8D8;
+	}		
+
+/*
+NAVIGATION
+*/
+
+nav { /*revised styles*/
+	width: 100%;
+	height: 80px;
+	margin: 0;
+	padding: 26px 0px 66px 0px;
+}
+
+nav ul{
+display: block;
+width: 100%
+float: none;	
+padding-left: 9%;
+margin: 0px auto 0px;
+	}
+
+/*nav ul{ old styles	
+padding-right: 16px;
+	}*/
+
+
+  	
+/*
+page properties
+*/
+
+section {
+width: 100%;
+/*border-bottom: 1px solid #D8D8D8;*/
+	}
+		
+.summary {
+margin: auto;
+width: 80%;
+padding: 50px 9.4736842% 16px 9.4736842%;
+	}
+	
+#services_section {
+width: 100%;
+border: 0px;
+	}
+
+#services {
+width: 80%;
+padding: 50px 9.4736842% 56px 9.4736842%;
+	}
+		  
+.skills {
+width: 100%;
+text-align: center;
+float: none;
+}
+	
+.software {
+width: 100%;
+text-align: center;
+float: none;
+	}
+	
+hgroup {
+padding: 95px 5.4736842% 95px 5.4736842%;
+}
+
+/*
+image box properties
+*/
+
+#work_section {
+width: 100%;
+border: 0px;
+margin-bottom: 80px;
+}
+
+#work {
+margin: auto;
+width: 84%;
+padding: 50px 5.4736842% 56px 5.4736842%;
+}
+	
+#work .thumbbox {
+width:90.33%;
+border: 1px solid #ccc;
+display: block;
+float: none;
+margin: 1.5em auto 15%;
+}
+	
+.thumbbox {
+}
+
+
+}
 	
 }
