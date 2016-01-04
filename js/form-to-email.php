@@ -1,61 +1,151 @@
-<?php
-if(!isset($_POST['submit']))
-{
-	//This page should not be accessed directly. Need to submit the form.
-	echo "error; you need to submit the form!";
-}
-$name = $_POST['name'];
-$visitor_email = $_POST['email'];
-$message = $_POST['message'];
+<header class="row">
+  <div class="columns">
+    <h1 class="page-title">Your Cart</h1>
+  </div>
+</header>
 
-//Validate first
-if(empty($name)||empty($visitor_email)) 
-{
-    echo "Name and email are mandatory!";
-    exit;
-}
+{% if cart.item_count > 0 %}
 
-if(IsInjected($visitor_email))
-{
-    echo "Bad email value!";
-    exit;
-}
+<form action="/cart" method="post" class="custom">
+  <div class="row">
+    <div class="columns">
+      <table width="100%" class="cart-table">
+        <thead>
+          <tr>
+            <th class="image">&nbsp;</th>
+            <th class="title">&nbsp;</th>
+            <th class="quantity">Quantity</th>
+            <th class="total">Total</th>
+            <th class="remove">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in cart.items %}
+        {% if forloop.first %}
+          {% assign coll_handle = item.product.collections.first.handle %}
+          {% if coll_handle == 'frontpage' or coll_handle == '' %}{% assign coll_handle = 'all' %}{% endif %}
+        {% endif %}
+        <tr>
+          <td class="image">
+            <a href="{{ item.product.url | within: collections.all }}">  
+              {% assign option_index = 0 %}
+              {% assign found_option = false %}
+              {% assign image_index = 0 %}
+              {% assign found_image = false %}
+              {% for option in item.product.options %}
+                {% unless found_option %}
+                  {% assign downcased_option = option | downcase %}
+                  {% if downcased_option contains 'color' or downcased_option contains 'colour' or downcased_option contains 'style' %}
+                    {% assign option_index = forloop.index0 %}
+                    {% assign found_option = true %}
+                  {% endif %}
+                {% endunless %}
+              {% endfor %}
+              {% if found_option %}
+                {% for image in item.product.images %}
+                  {% unless found_image %}
+                    {% if image.alt == item.variant.options[option_index] %}
+                      {% assign image_index = forloop.index0 %}
+                      {% assign found_image = true %}
+                    {% endif %}
+                  {% endunless %}
+                {% endfor %}
+              {% endif %}
+              <img src="{{ item.product.images[image_index].src | product_img_url: 'small' }}" alt="{{ item.title | escape }}" />
+            </a>
 
-$email_from = 'enrockq@gmail.com';//<== update the email address
-$email_subject = "New Form submission";
-$email_body = "You have received a new message from the user $name.\n".
-    "Here is the message:\n $message".
-    
-$to = "enrockq@gmail.com";//<== update the email address
-$headers = "From: $email_from \r\n";
-$headers .= "Reply-To: $visitor_email \r\n";
-//Send the email!
-mail($to,$email_subject,$email_body,$headers);
-//done. redirect to thank-you page.
-header('Location: thank-you.html');
+            <p class="mobile-title"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
+
+          </td>
+          <td class="title">
+            <p><a href="{{ item.product.url }}">{{ item.title }}</a></p>
+          </td>
+          <td class="quantity"><input type="text" class="field styled-input" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" /></td>
+          <td class="total">{{ item.line_price | money }}</td>
+          <td class="remove"><a title="Remove" href="/cart/change?line={{ forloop.index }}&quantity=0" aria-hidden="true" class="glyph cross" title="remove"></a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+      
+  <div class="row">
+
+    <div class="columns large-5 show-for-medium-up">
+      <div class="shipping-rates-calculator">
+        <!--Shipping rates calculater-->
+        <!--{% include 'snippet-shipping-rates-calculator' %}-->
+      </div>
+
+      <div class="continue-shopping show-for-medium-up">
+        <span><a href="/collections/{{ coll_handle }}"><span aria-hidden="true" class="glyph arrow-left"></span> Continue Shopping</a></span>
+      </div>
+    </div>
 
 
-// Function to validate against any email injection attempts
-function IsInjected($str)
-{
-  $injections = array('(\n+)',
-              '(\r+)',
-              '(\t+)',
-              '(%0A+)',
-              '(%0D+)',
-              '(%08+)',
-              '(%09+)'
-              );
-  $inject = join('|', $injections);
-  $inject = "/$inject/i";
-  if(preg_match($inject,$str))
-    {
-    return true;
-  }
-  else
-    {
-    return false;
-  }
-}
-   
-?> 
+    <div class="columns large-7">
+      <div class="totals columns">
+        <h3><strong>SUBTOTAL {{ cart.total_price | money }}</strong></h3>
+        <h4 id="estimated-shipping" style="display:none">+ Estimated shipping <em>{{ 0 | money }}</em></h4>
+        <input type="submit" name="update" class="button" value="Update cart" /> <span class="or">or</span>
+                <!--Comment our checkout button if causing glitches-->
+        <input  class="button" type="submit" name="checkout" value="Check out" />
+        {% if additional_checkout_buttons %}
+        <p class="additional-checkout-buttons">
+          {{ content_for_additional_checkout_buttons }}
+        </p>
+        {% endif %}
+      </div>
+
+      <div class="order-notes columns">
+        <div class="container">
+          <h3>Order Notes</h3>
+          <textarea id="cart-notes-area" name="note">{{ cart.note }}</textarea>
+          
+          <!--Local delivery snippett-->
+          {% include 'snippet-local-delivery-cart' %}
+        </div>
+      </div>
+    </div>
+
+    <div class="continue-shopping columns show-for-small columns">
+      <span><a href="/collections/{{ coll_handle }}"><span aria-hidden="true" class="glyph arrow-left"></span> Continue Shopping</a></span>
+    </div>
+
+  </div> 
+</form>
+
+
+{% else %}
+
+<section class="empty-cart row colored-links">
+  <div class="columns">
+    <h1>It appears that your cart is currently empty!</h1>
+    <h2>You can continue browsing <a href="/collections/all">here</a>.</h2>
+  </div>
+  
+  <!--Facebook tracking code-->
+  <script>(function() {
+ var _fbq = window._fbq || (window._fbq = []);
+ if (!_fbq.loaded) {
+   var fbds = document.createElement('script');
+   fbds.async = true;
+   fbds.src = '//connect.facebook.net/en_US/fbds.js';
+   var s = document.getElementsByTagName('script')[0];
+   s.parentNode.insertBefore(fbds, s);
+   _fbq.loaded = true;
+ }
+})();
+window._fbq = window._fbq || [];
+window._fbq.push(['track', '6016317998168', {'value':'0.00','currency':'USD'}]);
+</script>
+<noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6016317998168&amp;cd[value]=0.00&amp;cd[currency]=USD&amp;noscript=1" /></noscript>
+  <!--Facebook tracking code end-->
+  
+</section><!-- #empty-cart -->
+
+{% endif %} <!-- if cart.item_count > 0  -->
+
+
